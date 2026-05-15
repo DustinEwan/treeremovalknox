@@ -1,10 +1,9 @@
-// Cloudflare Pages Function to serve TwiML
 export async function onRequest(context) {
   const { request, params } = context;
   const path = params.path;
   
-  // Serve voicemail.xml for /twiml/voicemail.xml or just /twiml/
-  if (path === 'voicemail.xml' || path === '' || path === '/') {
+  // Serve TwiML for /twiml/voicemail.xml or just /twiml/
+  if (path === 'twiml/voicemail.xml' || path === 'twiml/') {
     const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="alice" language="en-us">
@@ -23,7 +22,7 @@ export async function onRequest(context) {
   }
   
   // Serve recording-status.xml for callbacks
-  if (path === 'recording-status') {
+  if (path === 'twiml/recording-status') {
     return new Response('<Response></Response>', {
       status: 200,
       headers: {
