@@ -5,7 +5,7 @@ export async function onRequest(context) {
 
   const TWILIO_SID = env.TWILIO_ACCOUNT_SID || "";
   const TWILIO_TOKEN = env.TWILIO_AUTH_TOKEN || "";
-  const NOTIFY_NUMBER = env.NOTIFY_NUMBER || "+18654320729";
+  const NOTIFY_NUMBER = env.NOTIFY_NUMBER || "+1865806729";
 
   function authHeader() {
     return "Basic " + btoa(TWILIO_SID + ":" + TWILIO_TOKEN);
@@ -20,7 +20,7 @@ export async function onRequest(context) {
       },
       body: new URLSearchParams({
         To: to,
-        From: "+18654320729",
+        From: "+18658060729",
         Body: body,
       }),
     }).then(r => r.json()).then(d => {
@@ -29,7 +29,7 @@ export async function onRequest(context) {
   }
 
   // === ROUTE: /twiml/voicemail.xml ===
-  if (pathSegments.length > 0 && pathSegments[0] === 'twiml' && (pathSegments[1] === 'voicemail.xml' || pathSegments[1] === '' || pathSegments.length === 1)) {
+  if (pathSegments.length > 0 && pathSegments[0] === 'voicemail.xml' || (pathSegments.length === 1 && pathSegments[0] === '')) {
     const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="Polly.Joanna-Generative" language="en-US">
@@ -46,7 +46,7 @@ export async function onRequest(context) {
   }
 
   // === ROUTE: /twiml/record-complete (POST from Record verb) ===
-  if (path === 'twiml/record-complete' && request.method === 'POST') {
+  if (path === 'record-complete' && request.method === 'POST') {
     const formData = await request.formData();
     const recordingSid = formData.get('RecordingSid');
     const recordingUrl = formData.get('RecordingUrl');
@@ -76,7 +76,7 @@ export async function onRequest(context) {
   }
 
   // === ROUTE: /twiml/transcribe-callback (POST from Twilio) ===
-  if (path === 'twiml/transcribe-callback' && request.method === 'POST') {
+  if (path === 'transcribe-callback' && request.method === 'POST') {
     const formData = await request.formData();
     const transcriptionStatus = formData.get('TranscriptionStatus');
     const transcriptionText = formData.get('TranscriptionText') || '';
@@ -99,12 +99,12 @@ export async function onRequest(context) {
   }
 
   // === ROUTE: /twiml/provider.xml ===
-  if (pathSegments.length > 0 && pathSegments[0] === 'twiml' && pathSegments[1] === 'provider.xml') {
+  if (pathSegments.length > 0 && pathSegments[0] === 'provider.xml') {
     const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="Polly.Joanna-Generative" language="en-US">Incoming call from Tree Removal Knoxville.</Say>
   <Dial>
-    <Number>+18654320729</Number>
+    <Number>+18658060729</Number>
   </Dial>
   <Redirect>/twiml/voicemail.xml</Redirect>
 </Response>`;
@@ -114,5 +114,29 @@ export async function onRequest(context) {
     });
   }
 
+  // === ROUTE: /twiml/record-complete (GET - TwiML response) ===
+  if (path === 'record-complete' && request.method === 'GET') {
+    const twiml = `<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Say voice="Polly.Joanna-Generative" language="en-US">Thank you, your message has been recorded. Goodbye.</Say>
+  <Hangup />
+</Response>`;
+    return new Response(twiml, {
+      status: 200,
+      headers: { 'Content-Type': 'application/xml' },
+    });
+  }
+
+  // === ROUTE: /twiml/transcribe-callback (GET - TwiML response) ===
+  if (path === 'transcribe-callback' && request.method === 'GET') {
+    const twiml = `<?xml version="1.0" encoding="UTF-8"?>
+<Response></Response>`;
+    return new Response(twiml, {
+      status: 200,
+      headers: { 'Content-Type': 'application/xml' },
+    });
+  }
+
+  // No match - return 404
   return new Response('Not Found', { status: 404 });
 }
