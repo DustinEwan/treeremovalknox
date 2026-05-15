@@ -20,7 +20,7 @@ export async function onRequest(context) {
     });
   }
 
-  // === ROUTE: /twiml/record-complete (POST from Record verb) ===
+  // === ROUTE: /twiml/record-complete (POST from Record verb when recording is done) ===
   if (path === 'twiml/record-complete' && request.method === 'POST') {
     const formData = await request.formData();
     const recordingSid = formData.get('RecordingSid');
@@ -28,35 +28,42 @@ export async function onRequest(context) {
     const recordingStatus = formData.get('RecordingStatus');
     const callSid = formData.get('CallSid');
     const from = formData.get('From');
+    const duration = formData.get('RecordingDuration');
     
     console.log('=== RECORDING COMPLETE ===');
     console.log('Call SID:', callSid);
     console.log('From:', from);
     console.log('Recording SID:', recordingSid);
     console.log('Recording URL:', recordingUrl);
+    console.log('Duration:', duration + 's');
     console.log('Status:', recordingStatus);
 
     // Send SMS notification with recording link
     try {
-      const twilioClient = context.Twilio;
-      const accountSid = context.env.TWILIO_ACCOUNT_SID;
-      const authToken = context.env.TWILIO_AUTH_TOKEN;
-      twilioClient.init(accountSid, authToken);
+      const sid = env.TWILIO_ACCOUNT_SID;
+      const token = env.TWILIO_AUTH_TOKEN;
+      const notifyNumber = env.NOTIFY_NUMBER;
       
-      await twilioClient.messages.create({
-        body: `Voicemail: ${from} left a message. Listen: ${recordingUrl}`,
-        to: '+18654320729',
-        from: '+18654320729'
+      const auth = btoa(sid + ':' + token);
+      const resp = await fetch('https://api.twilio.com/2010-04-01/Accounts/' + sid + '/Messages.json', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Basic ' + auth,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          To: notifyNumber,
+          From: '+18654320729',
+          Body: 'Voicemail from ' + from + ': ' + recordingUrl,
+        }),
       });
-      console.log('SMS sent successfully');
+      const smsData = await resp.json();
+      console.log('SMS sent:', smsData.status || smsData.error?.message);
     } catch (e) {
       console.error('SMS send failed:', e.message);
     }
 
-    // Store recording info (in real prod, store in S3/DynamoDB)
-    const record = { recordingSid, recordingUrl, callSid, from, recordingStatus, timestamp: new Date().toISOString() };
-    console.log('Recording record:', JSON.stringify(record));
-
+    // Return TwiML to tell caller recording is done
     const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="Polly.Joanna-Generative" language="en-US">Thank you, your message has been recorded. Goodbye.</Say>
@@ -68,43 +75,50 @@ export async function onRequest(context) {
     });
   }
 
-  // === ROUTE: /twiml/transcribe-callback (POST from Record transcribe) ===
+  // === ROUTE: /twiml/transcribe-callback (POST from Twilio when transcription is done) ===
   if (path === 'twiml/transcribe-callback' && request.method === 'POST') {
     const formData = await request.formData();
     const recordingSid = formData.get('RecordingSid');
-    const transcriptionId = formData.get('TranscriptionSid');
     const transcriptionStatus = formData.get('TranscriptionStatus');
     const transcriptionText = formData.get('TranscriptionText') || '';
     const from = formData.get('From');
 
     console.log('=== TRANSCRIPTION CALLBACK ===');
-    console.log('Recording SID:', recordingSid);
-    console.log('Transcription Status:', transcriptionStatus);
-    console.log('Text:', transcriptionText);
+    console.log('Status:', transcriptionStatus);
     console.log('From:', from);
+    console.log('Text:', transcriptionText);
 
     // Send SMS with transcription text
     if (transcriptionStatus === 'completed' && transcriptionText) {
       try {
-        const twilioClient = context.Twilio;
-        const accountSid = context.env.TWILIO_ACCOUNT_SID;
-        const authToken = context.env.TWILIO_AUTH_TOKEN;
-        twilioClient.init(accountSid, authToken);
+        const sid = env.TWILIO_ACCOUNT_SID;
+        const token = env.TWILIO_AUTH_TOKEN;
+        const notifyNumber = env.NOTIFY_NUMBER;
         
-        const preview = transcriptionText.substring(0, 500) + (transcriptionText.length > 500 ? '...' : '');
-        await twilioClient.messages.create({
-          body: `Voicemail from ${from}:\n\n${preview}`,
-          to: '+18654320729',
-          from: '+18654320729'
+        const auth = btoa(sid + ':' + token);
+        // Twilio SMS body limit is 1600 chars, truncate if needed
+        const body = 'Voicemail from ' + from + ':\n\n' + transcriptionText.substring(0, 1550);
+        const resp = await fetch('https://api.twilio.com/2010-04-01/Accounts/' + sid + '/Messages.json', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Basic ' + auth,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({
+            To: notifyNumber,
+            From: '+18654320729',
+            Body: body,
+          }),
         });
-        console.log('Transcription SMS sent');
+        const smsData = await resp.json();
+        console.log('Transcription SMS sent:', smsData.status || smsData.error?.message);
       } catch (e) {
         console.error('Transcription SMS failed:', e.message);
       }
     }
 
-    const twiml = `<Response></Response>`;
-    return new Response(twiml, {
+    // Empty response — Twilio just needs 200 OK
+    return new Response('<Response></Response>', {
       status: 200,
       headers: { 'Content-Type': 'application/xml' },
     });
