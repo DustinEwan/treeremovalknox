@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-# Set job-level permissions
 permissions:
   contents: read
 
@@ -22,11 +21,14 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.147.3'
+          hugo-version: '0.126.0'
           extended: true
 
       - name: Build
-        run: hugo --minify --gc
+        run: |
+          echo "Hugo version:"
+          hugo version
+          hugo --minify --gc
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
