@@ -24,4 +24,4 @@ Regular trimming promotes healthy growth, prevents disease, removes dead branche
 - **Formative trimming**: Shaping young trees for strong structure
 - **Storm prep**: Proactive trimming before storm season
 
-**Call 865-806-7320 for a free estimate.**
+**Call 865-432-0729 for a free estimate.**

@@ -21,9 +21,9 @@ When a tree falls on your house, blocks your driveway, or is hanging dangerously
 
 ## Our Emergency Response
 
-1. **Call 865-806-7320** — We assess the situation immediately
+1. **Call 865-432-0729** — We assess the situation immediately
 2. **Fast dispatch** — Crews are on their way within the hour
 3. **Safe removal** — We stabilize the situation and remove the hazard
 4. **Insurance help** — We work with your insurance to document the damage
 
-**Call 865-806-7320 — available 24/7.**
+**Call 865-432-0729 — available 24/7.**

@@ -33,4 +33,4 @@ We serve Knoxville and surrounding communities including South Knoxville, West K
 3. **Removal** — Equipment and crew work efficiently to remove the tree
 4. **Cleanup** — We leave your property clean and ready to use
 
-**Call 865-806-7320 for a free estimate.**
+**Call 865-432-0729 for a free estimate.**

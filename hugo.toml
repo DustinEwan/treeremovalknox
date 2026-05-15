@@ -48,8 +48,8 @@ pluralizelisttitles = false
 # Top bar - phone number visible before any scrolling
 [[menu.topbar]]
     weight = 1
-    name = "865-806-7320"
-    url = "tel:865-806-7320"
+    name = "865-432-0729"
+    url = "tel:865-432-0729"
     pre = "<i class='fas fa-phone'></i>"
 
 [params]
@@ -57,7 +57,7 @@ pluralizelisttitles = false
     author = "Tree Removal Knoxville"
     defaultKeywords = ["tree removal", "knoxville", "tree service"]
     mainSections = ["blog", "service"]
-    defaultDescription = "Professional tree removal and trimming services in Knoxville, TN. Licensed, insured crew. Call 865-806-7320."
+    defaultDescription = "Professional tree removal and trimming services in Knoxville, TN. Licensed, insured crew. Call 865-432-0729."
 
     facebook_site = ""
     twitter_site = ""
@@ -86,7 +86,7 @@ pluralizelisttitles = false
 # Top bar settings
 [params.topbar]
     enable = true
-    text = "Call now for a free estimate: <strong>865-806-7320</strong>"
+    text = "Call now for a free estimate: <strong>865-432-0729</strong>"
 
 # Sidebar widgets
 [params.widgets]
