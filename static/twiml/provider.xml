@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Say voice="alice" language="en-us">
+    Incoming call from Tree Removal Knoxville.
+  </Say>
+  <Dial record="record-from-answer" recordingStatusCallback="/twiml/recording-callback" recordingStatusCallbackEvent="completed" trim="do-not-trim">
+    <Number>+18654320729</Number>
+  </Dial>
+</Response>
