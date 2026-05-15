@@ -40,10 +40,7 @@ pluralizelisttitles = false
     url = "/contact/"
     weight = 5
 
-[[menu.main]]
-    name = "Blog"
-    url = "/blog/"
-    weight = 6
+
 
 # Top bar - phone number visible before any scrolling
 [[menu.topbar]]
@@ -53,10 +50,10 @@ pluralizelisttitles = false
     pre = "<i class='fas fa-phone'></i>"
 
 [params]
-    viewMorePostLink = "/blog/"
+    viewMorePostLink = "/tree-removal-services/"
     author = "Tree Removal Knoxville"
     defaultKeywords = ["tree removal", "knoxville", "tree service"]
-    mainSections = ["blog", "service"]
+    mainSections = ["service"]
     defaultDescription = "Professional tree removal and trimming services in Knoxville, TN. Licensed, insured crew. Call 865-432-0729."
 
     facebook_site = ""
@@ -81,7 +78,7 @@ pluralizelisttitles = false
     address = "Serving Knoxville, TN and surrounding areas: South Knoxville, West Knoxville, Farragut, Powell, Maryville, Alcoa, Loudon, Oak Ridge"
 
 [permalinks]
-    blog = "/blog/:slug/"
+    blog = "/:section/:slug/"
 
 # Top bar settings
 [params.topbar]
