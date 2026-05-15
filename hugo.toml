@@ -1,0 +1,104 @@
+baseurl = "https://example.com/"
+title = "Tree Removal Knoxville"
+theme = "hugo-universal-theme"
+themesDir = "/tmp"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+summaryLength = 30
+pluralizelisttitles = false
+
+[services]
+    [services.googleAnalytics]
+        id = ""
+
+[pagination]
+    pagerSize = 10
+
+# Main menu - clean, simple navigation for a service site
+[menu]
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Tree Removal"
+    url = "/tree-removal-services/"
+    weight = 2
+
+[[menu.main]]
+    name = "Tree Trimming"
+    url = "/tree-trimming-service/"
+    weight = 3
+
+[[menu.main]]
+    name = "Emergency"
+    url = "/emergency-tree-removal/"
+    weight = 4
+
+[[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 5
+
+[[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 6
+
+# Top bar - phone number visible before any scrolling
+[[menu.topbar]]
+    weight = 1
+    name = "865-806-7320"
+    url = "tel:865-806-7320"
+    pre = "<i class='fas fa-phone'></i>"
+
+[params]
+    viewMorePostLink = "/blog/"
+    author = "Tree Removal Knoxville"
+    defaultKeywords = ["tree removal", "knoxville", "tree service"]
+    mainSections = ["blog", "service"]
+    defaultDescription = "Professional tree removal and trimming services in Knoxville, TN. Licensed, insured crew. Call 865-806-7320."
+
+    facebook_site = ""
+    twitter_site = ""
+    default_sharing_image = "img/sharing-default.png"
+
+    # Color palettes: default (light-blue), blue, green, marsala, pink, red, turquoise, violet
+    style = "green"
+
+    formspree_action = "https://formspree.io/f/YOUR_FORM_ID"
+    contact_form_ajax = false
+    enableRecaptchaInContactForm = false
+    googleRecaptchaKey = ""
+
+    about_us = "Professional tree removal and trimming services in Knoxville, TN. Licensed, insured crew serving Knoxville county and surrounding communities."
+    copyright = "Tree Removal Knoxville. All rights reserved."
+    date_format = "January 2, 2006"
+    dropdown_mouse_over = false
+    disabled_logo = true
+    logo_text = "Tree Removal Knoxville"
+    contact_url = "/contact"
+    address = "Serving Knoxville, TN and surrounding areas: South Knoxville, West Knoxville, Farragut, Powell, Maryville, Alcoa, Loudon, Oak Ridge"
+
+[permalinks]
+    blog = "/blog/:slug/"
+
+# Top bar settings
+[params.topbar]
+    enable = true
+    text = "Call now for a free estimate: <strong>865-806-7320</strong>"
+
+# Sidebar widgets
+[params.widgets]
+    categories = true
+    tags = true
+    search = true
+
+[params.carouselCustomers]
+    items = 6
+    auto_play = false
+
+[params.carouselTestimonials]
+    items = 4
+    auto_play = false

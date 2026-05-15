@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    {{ partial "headers.html" . }}
+    {{ partial "custom_headers.html" . }}
+    <style>
+        /* Hero section with Unsplash background */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(45,106,30,0.85) 0%, rgba(74,140,52,0.85) 100%),
+                        url("/img/service/tree_08.jpg");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0 50px;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        .hero-phone {
+            display: inline-block;
+            background: #fff;
+            color: #2d6a1e;
+            font-size: 2.2rem;
+            font-weight: 700;
+            padding: 18px 45px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+        .hero-phone:hover {
+            background: #f0f0f0;
+            color: #1d4a0e;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 40px 0;
+        }
+        .service-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-card-body {
+            padding: 25px;
+            text-align: center;
+        }
+        .service-card h3 {
+            color: #2d6a1e;
+            margin-bottom: 10px;
+        }
+        .service-card a {
+            color: #2d6a1e;
+            font-weight: 600;
+        }
+        .trust-bar {
+            background: #f0f4f0;
+            padding: 30px 0;
+            text-align: center;
+        }
+        .trust-bar .container > div {
+            display: flex;
+            justify-content: space-around;
+        }
+        .trust-item {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d6a1e;
+        }
+        .gallery-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .gallery-section h2 {
+            margin-bottom: 30px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .trust-bar .container > div { flex-direction: column; gap: 15px; }
+            .hero-section h1 { font-size: 1.8rem; }
+            .hero-phone { font-size: 1.5rem; padding: 12px 25px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="all">
+
+        {{ partial "top.html" . }}
+        {{ partial "nav.html" . }}
+
+        <!-- Hero with Unsplash background -->
+        <section class="hero-section">
+            <div class="container">
+                <h1>Tree Removal Knoxville, TN</h1>
+                <p>Fast, safe, insured. Serving Knoxville and surrounding areas.</p>
+                <a href="tel:865-806-7320" class="hero-phone">&#9742; 865-806-7320</a>
+            </div>
+        </section>
+
+        <!-- Trust bar -->
+        <div class="trust-bar">
+            <div class="container">
+                <div>
+                    <div class="trust-item">Licensed & Insured</div>
+                    <div class="trust-item">Free Estimates</div>
+                    <div class="trust-item">24/7 Emergency Service</div>
+                    <div class="trust-item">Same-Day Response</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services with Unsplash images -->
+        <div class="container">
+            <h2 style="text-align:center; margin-top:40px;">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="/img/service/tree_00.jpg" alt="Professional tree removal service">
+                    <div class="service-card-body">
+                        <h3>Tree Removal</h3>
+                        <p>Safe removal of dead, dangerous, or unwanted trees. Full cleanup included.</p>
+                        <a href="/tree-removal-services/">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="/img/service/tree_03.jpg" alt="Tree trimming and pruning service">
+                    <div class="service-card-body">
+                        <h3>Tree Trimming</h3>
+                        <p>Expert pruning, crown reduction, and shaping to keep your trees healthy.</p>
+                        <a href="/tree-trimming-service/">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="/img/service/tree_05.jpg" alt="Emergency tree removal response">
+                    <div class="service-card-body">
+                        <h3>Emergency Service</h3>
+                        <p>24/7 storm response. Fallen trees, power line hazards, fast dispatch.</p>
+                        <a href="/emergency-tree-removal/">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery section with more Unsplash images -->
+        <div class="gallery-section">
+            <div class="container">
+                <h2>Why Knoxville Trusts Us</h2>
+                <div class="gallery-grid">
+                    <img src="/img/service/tree_01.jpg" alt="Tree removal professional at work">
+                    <img src="/img/service/tree_02.jpg" alt="Crew working on tree removal">
+                    <img src="/img/service/tree_04.jpg" alt="Professional arborist climbing tree">
+                    <img src="/img/service/tree_06.jpg" alt="Tree removal in residential area">
+                </div>
+            </div>
+        </div>
+
+        <!-- About section with Unsplash image -->
+        <div class="container" style="padding: 40px 0;">
+            <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="/img/service/tree_09.jpg" alt="Tree service crew" style="width:100%; border-radius:8px;">
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h2>Why Knoxville Trusts Us for Tree Removal</h2>
+                    <p>{{ .Site.Params.about_us | safeHTML }}</p>
+                    <p>From South Knoxville to Farragut, Powell to Maryville, our crew handles trees of any size — safely, cleanly, and on your schedule. Call 865-806-7320 for a free estimate.</p>
+                </div>
+            </div>
+        </div>
+
+        {{ partial "footer.html" . }}
+
+    </div>
+
+    {{ partial "scripts.html" . }}
+
+</body>
+</html>

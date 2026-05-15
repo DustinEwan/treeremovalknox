@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    {{ partial "headers.html" . }}
+    {{ partial "custom_headers.html" . }}
+    <style>
+        /* Service hero section */
+        .service-hero {
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+        .service-hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(45,106,30,0.8) 0%, rgba(74,140,52,0.8) 100%);
+            z-index: 1;
+        }
+        .service-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .service-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .service-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+        .service-phone {
+            display: inline-block;
+            background: #fff;
+            color: #2d6a1e;
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .service-phone:hover {
+            background: #f0f0f0;
+            color: #1d4a0e;
+            text-decoration: none;
+        }
+        /* Content styling */
+        #content {
+            padding: 40px 0;
+        }
+        #content h2 {
+            color: #2d6a1e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        #content h3 {
+            color: #333;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        #content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        #content ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        #content li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        #content strong {
+            color: #2d6a1e;
+        }
+        /* Image styling */
+        .service-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        /* CTA box */
+        .cta-box {
+            background: #f0f4f0;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta-box h3 {
+            color: #2d6a1e;
+            margin-bottom: 15px;
+        }
+        .cta-box a {
+            display: inline-block;
+            background: #2d6a1e;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .cta-box a:hover {
+            background: #1d4a0e;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .service-hero h1 { font-size: 1.8rem; }
+            .service-phone { font-size: 1.3rem; padding: 10px 20px; }
+            .service-image { height: 250px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="all">
+
+        {{ partial "top.html" . }}
+        {{ partial "nav.html" . }}
+
+        <!-- Service Hero with Unsplash background -->
+        <section class="service-hero" style="background-image: url('/img/service/{{ .Params.hero_image }}');">
+            <div class="container">
+                <h1>{{ .Title }}</h1>
+                <p>{{ .Params.description | default "Professional service in Knoxville, TN" }}</p>
+                <a href="tel:865-806-7320" class="service-phone">&#9742; 865-806-7320</a>
+            </div>
+        </section>
+
+        <!-- Content with images -->
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ if .Params.image_1 }}
+                        <img src="/img/service/{{ .Params.image_1 }}" alt="{{ .Title }} service" class="service-image">
+                        {{ end }}
+                        
+                        <div>
+                          {{ .Content }}
+                        </div>
+
+                        {{ if .Params.image_2 }}
+                        <img src="/img/service/{{ .Params.image_2 }}" alt="{{ .Title }} in action" class="service-image">
+                        {{ end }}
+
+                        <!-- CTA Box -->
+                        <div class="cta-box">
+                            <h3>Ready to Get Started?</h3>
+                            <p>Call now for a free estimate. We serve all of Knoxville and surrounding areas.</p>
+                            <a href="tel:865-806-7320">&#9742; 865-806-7320</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ partial "footer.html" . }}
+
+    </div>
+
+    {{ partial "scripts.html" . }}
+
+</body>
+</html>

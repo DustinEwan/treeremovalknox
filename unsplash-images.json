@@ -1,0 +1,67 @@
+{
+  "images": [
+    {
+      "file": "tree_00.jpg",
+      "usage": "hero-bg",
+      "alt": "Hero background - tree removal work"
+    },
+    {
+      "file": "tree_01.jpg",
+      "usage": "service-removal",
+      "alt": "Tree removal service page image"
+    },
+    {
+      "file": "tree_02.jpg",
+      "usage": "service-trimming",
+      "alt": "Tree trimming service page image"
+    },
+    {
+      "file": "tree_03.jpg",
+      "usage": "service-emergency",
+      "alt": "Emergency tree removal image"
+    },
+    {
+      "file": "tree_04.jpg",
+      "usage": "trust-crew",
+      "alt": "Professional arborist crew image"
+    },
+    {
+      "file": "tree_05.jpg",
+      "usage": "blog-banner",
+      "alt": "Blog post banner image"
+    },
+    {
+      "file": "tree_06.jpg",
+      "usage": "contact-page",
+      "alt": "Contact page background"
+    },
+    {
+      "file": "tree_07.jpg",
+      "usage": "footer-bg",
+      "alt": "Footer background image"
+    },
+    {
+      "file": "tree_08.jpg",
+      "usage": "about-section",
+      "alt": "About us section image"
+    },
+    {
+      "file": "tree_09.jpg",
+      "usage": "faq-section",
+      "alt": "FAQ section image"
+    }
+  ],
+  "search_queries": {
+    "tree_00.jpg": "tree-removal-crew-arborist",
+    "tree_01.jpg": "tree-removal-crew-arborist",
+    "tree_02.jpg": "tree-removal-crew-arborist",
+    "tree_03.jpg": "tree-removal-crew-arborist",
+    "tree_04.jpg": "tree-removal-crew-arborist",
+    "tree_05.jpg": "tree-removal-crew-arborist",
+    "tree_06.jpg": "tree-removal-crew-arborist",
+    "tree_07.jpg": "tree-removal-crew-arborist",
+    "tree_08.jpg": "tree-removal-crew-arborist",
+    "tree_09.jpg": "tree-removal-crew-arborist"
+  },
+  "note": "All images from Unsplash, licensed under Unsplash license (free to use)"
+}
