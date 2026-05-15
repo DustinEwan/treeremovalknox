@@ -101,3 +101,5 @@ pluralizelisttitles = false
 [params.carouselTestimonials]
     items = 4
     auto_play = false
+
+# redeploy trigger
