@@ -10,7 +10,6 @@ export async function onRequest(context) {
   <Say voice="Google.en-US-Neural2-A" language="en-US">
     Thank you for calling Tree Removal Knoxville. Nobody is available to answer your call right now, but if you leave your name, phone number, and a brief reason for your call, we'll get back to you as soon as possible. Thank you!
   </Say>
-  <Record maxLength="120" playBeep="false" trim="do-not-trim" />
   <Hangup />
 </Response>`;
     
