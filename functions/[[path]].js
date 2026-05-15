@@ -7,7 +7,7 @@ export async function onRequest(context) {
   if (pathSegments.length > 0 && pathSegments[0] === 'twiml' && (pathSegments[1] === 'voicemail.xml' || pathSegments[1] === '' || pathSegments.length === 1)) {
     const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say voice="Google.en-US-Neural2-A" language="en-US">
+  <Say voice="Polly.Joanna-Generative" language="en-US">
     Thank you for calling Tree Removal Knoxville. Nobody is available to answer your call right now, but if you leave your name, phone number, and a brief reason for your call, we'll get back to you as soon as possible. Thank you!
   </Say>
   <Hangup />
