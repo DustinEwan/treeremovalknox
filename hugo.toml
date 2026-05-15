@@ -1,7 +1,6 @@
 baseurl = "https://example.com/"
 title = "Tree Removal Knoxville"
 theme = "hugo-universal-theme"
-themesDir = "/tmp"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 summaryLength = 30
